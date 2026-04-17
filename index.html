@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Joaquim Bravo — IoT Engineer & Founder of Civitech</title>
+<meta name="description" content="IoT engineer with a decade of experience across industrial, automotive, healthcare and residential connected systems. Founder of Civitech — smart home and energy optimization." />
+<meta name="author" content="Joaquim Bravo" />
+<link rel="canonical" href="https://joaquimbravo.com/" />
+<link rel="alternate" hreflang="en" href="https://joaquimbravo.com/" />
+<link rel="alternate" hreflang="es" href="https://joaquimbravo.com/es" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#B30000" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0d0d0e" media="(prefers-color-scheme: dark)" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://joaquimbravo.com/" />
+<meta property="og:title" content="Joaquim Bravo — IoT Engineer & Founder of Civitech" />
+<meta property="og:description" content="Building connected systems — from firmware in the field to cloud platforms at scale. A decade across industrial, automotive, healthcare and residential IoT." />
+<meta property="og:image" content="https://joaquimbravo.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="es_ES" />
+<meta property="og:site_name" content="Joaquim Bravo" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Joaquim Bravo — IoT Engineer & Founder of Civitech" />
+<meta name="twitter:description" content="Building connected systems — from firmware in the field to cloud platforms at scale." />
+<meta name="twitter:image" content="https://joaquimbravo.com/og-image.png" />
+
+<!-- Structured data: Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Joaquim Bravo",
+  "url": "https://joaquimbravo.com",
+  "image": "https://joaquimbravo.com/og-image.png",
+  "jobTitle": "IoT Engineer, Founder of Civitech",
+  "email": "hola@joaquimbravo.com",
+  "worksFor": [
+    { "@type": "Organization", "name": "Civitech", "url": "https://civitech.es" },
+    { "@type": "Organization", "name": "Proemion" }
+  ],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Universitat Politècnica de Catalunya (UPC)" },
+    { "@type": "CollegeOrUniversity", "name": "Universitat de les Illes Balears (UIB)" }
+  ],
+  "knowsLanguage": ["en", "es", "ca"],
+  "knowsAbout": ["Internet of Things", "Home Assistant", "LoRaWAN", "MQTT", "Smart Home", "Energy Optimization", "AWS", "Azure", "Industrial IoT"],
+  "sameAs": [
+    "https://linkedin.com/in/joaquimbravo",
+    "https://github.com/Xim1994",
+    "https://civitech.es"
+  ],
+  "nationality": "ES"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fcfcfa;
+    --bg-card: #ffffff;
+    --sidebar-bg: #f5f4f0;
+    --fg: #111111;
+    --fg-muted: #4a4a4a;
+    --fg-subtle: #888888;
+    --border: #e7e5df;
+    --border-strong: #d0ccc2;
+    --accent: #B30000;
+    --accent-2: #d94c3d;
+    --accent-soft: rgba(179, 0, 0, 0.08);
+    --dot: #B30000;
+    --track: #e5e3dd;
+    --fill: #1a1a1a;
+    --glow: rgba(179, 0, 0, 0.15);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  [data-theme="dark"] {
+    --bg: #0d0d0e;
+    --bg-card: #161618;
+    --sidebar-bg: #141416;
+    --fg: #f4f4f2;
+    --fg-muted: #a8a8a2;
+    --fg-subtle: #6e6e68;
+    --border: #23232a;
+    --border-strong: #303038;
+    --accent: #ff5a5a;
+    --accent-2: #ff7a5a;
+    --accent-soft: rgba(255, 90, 90, 0.1);
+    --dot: #ff5a5a;
+    --track: #23232a;
+    --fill: #f4f4f2;
+    --glow: rgba(255, 90, 90, 0.2);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.55;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  /* Subtle background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(600px circle at 0% 0%, var(--accent-soft), transparent 50%),
+      radial-gradient(800px circle at 100% 100%, var(--accent-soft), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .controls button, .controls a {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--fg-muted);
+    padding: 7px 13px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .controls button:hover, .controls a:hover {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+  .controls button.active {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+  .controls a.pdf {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .controls a.pdf:hover {
+    background: color-mix(in srgb, var(--accent) 85%, black);
+    border-color: color-mix(in srgb, var(--accent) 85%, black);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  /* LAYOUT */
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    position: relative;
+    z-index: 1;
+  }
+  aside {
+    background: var(--sidebar-bg);
+    padding: 48px 32px 48px 40px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  main {
+    padding: 48px 52px 80px 52px;
+  }
+
+  /* MONOGRAM */
+  .monogram {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px var(--glow);
+    transform: rotate(-3deg);
+  }
+
+  /* NAME */
+  .name-header h1 {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .role {
+    font-size: 14px;
+    color: var(--fg-muted);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .role.primary {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .role .accent { color: var(--accent); font-weight: 600; }
+  .location {
+    font-size: 12px;
+    color: var(--fg-subtle);
+    margin-top: 4px;
+    font-family: var(--mono);
+  }
+  .location::before {
+    content: '◉ ';
+    color: var(--accent);
+  }
+
+  /* STATUS PILL */
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 5px 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .status-pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  /* SIDEBAR SECTIONS */
+  .side-section {
+    margin-top: 32px;
+  }
+  .side-section h3 {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-subtle);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-list {
+    list-style: none;
+    font-size: 13px;
+  }
+  .contact-list li {
+    margin-bottom: 8px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+  }
+  .contact-list a {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .contact-list a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* SKILL BARS */
+  .skills-list {
+    display: grid;
+    gap: 12px;
+  }
+  .skill .label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--fg);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .skill .label .years {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--fg-subtle);
+    font-weight: 400;
+  }
+  .skill .bar {
+    height: 4px;
+    background: var(--track);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+  }
+  .skill .bar::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: var(--level, 85%);
+    background: linear-gradient(90deg, var(--fill), color-mix(in srgb, var(--fill) 70%, var(--accent)));
+    border-radius: 100px;
+    transition: width 0.6s cubic-bezier(.2,.9,.2,1);
+  }
+
+  /* LANGUAGE dots */
+  .langs {
+    display: grid;
+    gap: 9px;
+  }
+  .lang {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--fg);
+  }
+  .lang .dots {
+    display: flex;
+    gap: 3px;
+  }
+  .lang .dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--track);
+    transition: background 0.2s;
+  }
+  .lang .dots span.on { background: var(--fill); }
+
+  /* TAG CHIPS */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .chip {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--fg-muted);
+    font-family: var(--mono);
+    font-weight: 500;
+  }
+
+  /* MAIN HERO */
+  .hero {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .hero .tagline {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin-bottom: 18px;
+    max-width: 640px;
+  }
+  .hero .tagline em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .hero .intro {
+    font-size: 15px;
+    color: var(--fg-muted);
+    max-width: 640px;
+    line-height: 1.65;
+  }
+  .hero .intro + .intro { margin-top: 10px; }
+  .hero .intro strong { color: var(--fg); font-weight: 600; }
+
+  /* STATS ROW */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .stat {
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .stat .n {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--fg);
+  }
+  .stat .n .sub {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .stat .lbl {
+    font-size: 11px;
+    color: var(--fg-subtle);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* MAIN SECTIONS */
+  .main-section {
+    margin-top: 48px;
+  }
+  .main-section h2 {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--fg-subtle);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .main-section h2::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .main-section h2 .count {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--fg-subtle);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  /* FEATURED CURRENT */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .featured-card {
+    position: relative;
+    padding: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+  }
+  .featured-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--glow);
+  }
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  }
+  .featured-card .tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .featured-card h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    color: var(--fg);
+  }
+  .featured-card .sub {
+    font-size: 13px;
+    color: var(--fg-muted);
+    margin-bottom: 12px;
+  }
+  .featured-card p {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+  .featured-card .tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 12px;
+  }
+  .featured-card .tech span {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 22px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--border) 10%, var(--border) 100%);
+  }
+  .entry {
+    position: relative;
+    padding-bottom: 28px;
+  }
+  .entry:last-child { padding-bottom: 0; }
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--dot);
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--border);
+    transition: transform 0.2s;
+  }
+  .entry:hover::before {
+    transform: scale(1.2);
+    background: var(--dot);
+  }
+  .entry-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 3px;
+  }
+  .entry-head h3 {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--fg);
+    letter-spacing: -0.005em;
+  }
+  .entry-head .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .entry .meta {
+    font-size: 13.5px;
+    color: var(--fg-muted);
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+  .entry .date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-subtle);
+    font-weight: 500;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .entry ul {
+    list-style: none;
+    padding: 0;
+  }
+  .entry li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13.5px;
+    color: var(--fg-muted);
+    line-height: 1.6;
+    margin-bottom: 5px;
+  }
+  .entry li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 5px;
+    height: 1px;
+    background: var(--fg-subtle);
+  }
+  .entry p {
+    font-size: 13.5px;
+    color: var(--fg-muted);
+    line-height: 1.6;
+  }
+
+  /* PROJECTS GRID */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .project {
+    padding: 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .project:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .project h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--fg);
+  }
+  .project .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-subtle);
+    margin-bottom: 8px;
+  }
+  .project p {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+
+  /* COMPACT LIST */
+  .compact-list {
+    display: grid;
+    gap: 8px;
+  }
+  .compact-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 18px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .compact-item:last-child { border-bottom: none; }
+  .compact-item .date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-subtle);
+  }
+  .compact-item .title {
+    color: var(--fg);
+    font-weight: 500;
+  }
+  .compact-item .org {
+    color: var(--fg-subtle);
+    font-size: 12px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 28px 52px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-subtle);
+    display: flex;
+    justify-content: space-between;
+    max-width: 1120px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* PRINT */
+  @media print {
+    .topbar, footer { display: none; }
+    body { font-size: 10pt; }
+    body::before { display: none; }
+    .page { display: grid; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .page { grid-template-columns: 1fr; }
+    aside {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 40px 28px;
+    }
+    main { padding: 36px 28px 60px; }
+    .name-header h1 { font-size: 34px; }
+    .hero .tagline { font-size: 22px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .featured-grid, .projects-grid { grid-template-columns: 1fr; }
+    footer { padding: 20px 28px; flex-direction: column; gap: 4px; }
+    .compact-item { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  [lang-section] { display: none; }
+  [lang-section].active { display: contents; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Joaquim Bravo</div>
+  <div class="controls">
+    <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="lang-es" onclick="setLang('es')">ES</button>
+    <a href="/cv-en.pdf" id="pdf-link" class="pdf">Download PDF</a>
+    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
+  </div>
+</div>
+
+<!-- ============ ENGLISH ============ -->
+<div lang-section="en" class="active">
+<div class="page">
+
+  <aside>
+    <div class="monogram">JB</div>
+
+    <div class="name-header">
+      <h1>Joaquim<br/>Bravo</h1>
+      <div class="role primary">IoT Engineer</div>
+      <div class="role"><span class="accent">Founder of Civitech</span></div>
+      <div class="location">Spain</div>
+      <div class="status-pill">Open to opportunities</div>
+    </div>
+
+    <div class="side-section">
+      <h3>Contact</h3>
+      <ul class="contact-list">
+        <li><a href="mailto:hola@joaquimbravo.com">hola@joaquimbravo.com</a></li>
+        <li><a href="https://linkedin.com/in/joaquimbravo" target="_blank" rel="noopener">linkedin/joaquimbravo</a></li>
+        <li><a href="https://github.com/Xim1994" target="_blank" rel="noopener">github/Xim1994</a></li>
+        <li><a href="https://civitech.es" target="_blank" rel="noopener">civitech.es</a></li>
+      </ul>
+    </div>
+
+    <div class="side-section">
+      <h3>Core Expertise</h3>
+      <div class="skills-list">
+        <div class="skill"><div class="label">IoT architecture<span class="years">10y+</span></div><div class="bar" style="--level:95%"></div></div>
+        <div class="skill"><div class="label">Home Assistant / Shelly<span class="years">5y</span></div><div class="bar" style="--level:95%"></div></div>
+        <div class="skill"><div class="label">Python<span class="years">10y+</span></div><div class="bar" style="--level:90%"></div></div>
+        <div class="skill"><div class="label">MQTT · LoRaWAN<span class="years">8y</span></div><div class="bar" style="--level:92%"></div></div>
+        <div class="skill"><div class="label">AWS · Azure<span class="years">6y</span></div><div class="bar" style="--level:82%"></div></div>
+        <div class="skill"><div class="label">TypeScript · React<span class="years">6y</span></div><div class="bar" style="--level:80%"></div></div>
+        <div class="skill"><div class="label">Grafana · InfluxDB<span class="years">7y</span></div><div class="bar" style="--level:90%"></div></div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>Tech Stack</h3>
+      <div class="chips">
+        <span class="chip">ESP32</span>
+        <span class="chip">Raspberry Pi</span>
+        <span class="chip">Modbus</span>
+        <span class="chip">CAN</span>
+        <span class="chip">OCPP</span>
+        <span class="chip">BLE</span>
+        <span class="chip">NFC</span>
+        <span class="chip">KNX</span>
+        <span class="chip">Django</span>
+        <span class="chip">Flask</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">.NET Core</span>
+        <span class="chip">GraphQL</span>
+        <span class="chip">Solidity</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Proxmox</span>
+        <span class="chip">Tailscale</span>
+        <span class="chip">n8n</span>
+        <span class="chip">Trigger.dev</span>
+        <span class="chip">Claude API</span>
+        <span class="chip">Ollama</span>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>Languages</h3>
+      <div class="langs">
+        <div class="lang"><span>English</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div></div>
+        <div class="lang"><span>Spanish</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></div>
+        <div class="lang"><span>Catalan</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>Interests</h3>
+      <ul class="contact-list">
+        <li>Economics &amp; investing</li>
+        <li>Home-lab &amp; self-hosting</li>
+        <li>Sports · Travel · Learning</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+
+    <section class="hero">
+      <p class="tagline">
+        Building connected systems — from firmware in the field to <em>cloud platforms at scale</em>.
+      </p>
+      <p class="intro">
+        <strong>IoT engineer</strong> with a decade of experience across industrial, automotive, healthcare and residential connected systems. Hands-on from firmware (ESP32, C++) to cloud platforms (AWS, Azure, MQTT brokers, time-series pipelines), focused on turning sensor data into operational value.
+      </p>
+      <p class="intro">
+        Co-founder &amp; CEO of <strong>Civitech</strong>, a Spanish smart-home and energy-optimization company built on Home Assistant, Shelly and custom automations for residential and B2B clients. Currently also Senior IoT Architect in pharma / life sciences, and previously Cloud FAE at Proemion and Front-End Team Lead at Wise (AXA security tooling).
+      </p>
+
+      <div class="stats">
+        <div class="stat"><div class="n">10<span class="sub">+y</span></div><div class="lbl">IoT experience</div></div>
+        <div class="stat"><div class="n">5</div><div class="lbl">Industries</div></div>
+        <div class="stat"><div class="n">1</div><div class="lbl">Company founded</div></div>
+        <div class="stat"><div class="n">15<span class="sub">+</span></div><div class="lbl">Projects shipped</div></div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Currently <span class="count">two roles · active</span></h2>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="tag">Founder · CEO</div>
+          <h3>Civitech</h3>
+          <div class="sub">Smart home &amp; energy optimization · 2021 — Present</div>
+          <p>Productized installation service for residential and B2B clients on Home Assistant + Shelly. Owns the full stack: HA dashboards, monitoring, installation SOPs, remote fleet management and pricing strategy.</p>
+          <div class="tech"><span>Home Assistant</span><span>Shelly</span><span>Grafana</span><span>MQTT</span></div>
+        </div>
+        <div class="featured-card">
+          <div class="tag">Senior IoT Architect</div>
+          <h3>Pharma / Life Sciences</h3>
+          <div class="sub">Consulting · Dec 2025 — Present</div>
+          <p>IoT architecture and data pipelines across manufacturing and R&amp;D sites. LoRaWAN + Tektelic NS, MQTT fleet (Mosquitto / Cedalo MMC), AWS data platform, onboarding playbooks and governance.</p>
+          <div class="tech"><span>LoRaWAN</span><span>Tektelic</span><span>MQTT</span><span>AWS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Experience <span class="count">5 roles</span></h2>
+      <div class="timeline">
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Co-founder &amp; CEO</h3>
+            <span class="badge">Current</span>
+          </div>
+          <div class="meta">Civitech · Smart Home &amp; Energy Optimization</div>
+          <div class="date">2021 — Present</div>
+          <ul>
+            <li>Founded and scaled a smart-home installation and energy-optimization company serving residential and B2B clients (laundries, offices, energy-intensive businesses)</li>
+            <li>Designed a productized service line on Home Assistant + Shelly (Shelly Direct and Civitech Smart tiers) covering lighting, blinds, heating, AC, security and solar / PVPC-based automations</li>
+            <li>Built the full technical stack: HA dashboards, generic package architecture, installation SOPs, monitoring (Grafana + InfluxDB + MQTT) and remote fleet management</li>
+            <li>Ownership of sales pipeline, pricing strategy, partnerships and technical delivery</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Senior IoT Architect</h3>
+            <span class="badge">Current</span>
+          </div>
+          <div class="meta">Pharma / Life Sciences sector</div>
+          <div class="date">Dec 2025 — Present</div>
+          <ul>
+            <li>IoT architecture and data pipelines across manufacturing and R&amp;D sites</li>
+            <li>LoRaWAN networks with Tektelic Network Server, MQTT fleet (Mosquitto / Cedalo MMC), AWS data platform</li>
+            <li>Platform integrations, onboarding playbooks and governance for industrial use-cases</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Cloud Field Application Engineer</h3>
+          </div>
+          <div class="meta">Proemion · Industrial IoT &amp; Fleet Telematics</div>
+          <div class="date">Jun 2023 — Present</div>
+          <ul>
+            <li>Primary technical liaison for IoT vehicle and fleet-management solutions, ensuring tailored integrations for OEM clients</li>
+            <li>Configured and implemented Proemion DataPortal for client data visualization and cloud features</li>
+            <li>Dedicated technical support, resolving integration challenges end-to-end</li>
+            <li>Stack: AWS, MQTT, Python, TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Front-End Team Lead</h3>
+          </div>
+          <div class="meta">Wise · AXA security tooling</div>
+          <div class="date">Nov 2019 — Jan 2024</div>
+          <ul>
+            <li>Led the front-end team for a penetration-testing security platform built with Python (Flask) and .NET Core</li>
+            <li>Responsive UIs in React.js; backend in Node.js + TypeScript, GraphQL and blockchain smart contracts</li>
+            <li>CI/CD with Azure and GitHub Actions; mobile companion app in Flutter / Dart</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>IoT Engineer</h3>
+          </div>
+          <div class="meta">Electrans · Railway sector</div>
+          <div class="date">Jan 2018 — Nov 2019</div>
+          <ul>
+            <li>Desktop UIs in C# for railway operations</li>
+            <li>Transitioned to IoT: data acquisition at train stations via Raspberry Pi (cellular), transmitted to central server</li>
+            <li>Python and .NET for solution development; collaborative web platforms in JavaScript</li>
+            <li>Grafana + InfluxDB + Telegraf + Mosquitto stack for monitoring and storage</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Selected Projects <span class="count">freelance &amp; extra</span></h2>
+      <div class="projects-grid">
+
+        <div class="project">
+          <h3>UHF theft-detection system</h3>
+          <div class="meta">Brownie · Barcelona · 2023–24</div>
+          <p>Raspberry Pi with presence sensor and UHF reader to monitor clothing tags. Real-time notifications to Teams / email and light alarm on detection.</p>
+        </div>
+
+        <div class="project">
+          <h3>BLE medical gateway</h3>
+          <div class="meta">Imaginae · Barcelona · 2023–24</div>
+          <p>Raspberry Pi gateway connecting BLE medical devices to the Biot platform. DDD architecture, BLE scanning, secure data transfer.</p>
+        </div>
+
+        <div class="project">
+          <h3>Boat tracking platform</h3>
+          <div class="meta">Runsolutions · Palma · 2023</div>
+          <p>TTN integration for water / electric meters and presence sensors. MQTT decoding, TypeScript parsers, Telegraf + InfluxDB + Grafana dashboards.</p>
+        </div>
+
+        <div class="project">
+          <h3>Healthcare integrations</h3>
+          <div class="meta">Blendarsys · Barcelona · 2023</div>
+          <p>IoT device integration via Mirth Connect and hospital APIs. Secure data exchange between heterogeneous healthcare systems.</p>
+        </div>
+
+        <div class="project">
+          <h3>ESP32 firmware suite</h3>
+          <div class="meta">Freelance · 2022–23</div>
+          <p>ESP32 S3 in C++: SD integration, I2S voice/sound recording (WAV), WiFi provisioning (AP/BLE), OTA updates, HTTPS GET/POST, RGB LED control.</p>
+        </div>
+
+        <div class="project">
+          <h3>MQTT alarm system</h3>
+          <div class="meta">Freelance · Barcelona · 2022</div>
+          <p>Raspberry Pi internet-connected alarm with buzzer, two-way MQTT, electronic circuit design, Python.</p>
+        </div>
+
+        <div class="project">
+          <h3>Fleet tracking platform</h3>
+          <div class="meta">BWireless · Barcelona · 2018–19</div>
+          <p>Real-time vehicle tracking with GPS, Python and HTML5. Customer-facing map UI with live telemetry.</p>
+        </div>
+
+        <div class="project">
+          <h3>dApps &amp; smart contracts</h3>
+          <div class="meta">Freelance · 2020–22</div>
+          <p>Solidity + React.js decentralized applications. VS Code extensions in Node.js / Vue.js. IoT project management across LoRaWAN initiatives.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Education <span class="count">formal</span></h2>
+      <div class="compact-list">
+        <div class="compact-item">
+          <span class="date">2017 — 2018</span>
+          <span><span class="title">Master's Degree in Internet of Things</span> · <span class="org">UPC Barcelona</span></span>
+          <span class="org"></span>
+        </div>
+        <div class="compact-item">
+          <span class="date">2012 — 2017</span>
+          <span><span class="title">BSc Electronic, Industrial &amp; Automatic Engineering</span> · <span class="org">UIB Palma</span></span>
+          <span class="org"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Certifications <span class="count">8 courses</span></h2>
+      <div class="compact-list">
+        <div class="compact-item"><span class="date">2023 — 2024</span><span class="title">Master in AI and Innovation</span><span class="org">Founderz &amp; Microsoft</span></div>
+        <div class="compact-item"><span class="date">2023</span><span class="title">AZ-220 Microsoft Azure IoT Developer</span><span class="org">Microsoft</span></div>
+        <div class="compact-item"><span class="date">2023</span><span class="title">AZ-204 Developing Solutions for Microsoft Azure</span><span class="org">Microsoft</span></div>
+        <div class="compact-item"><span class="date">2022</span><span class="title">Scrum Master &amp; Product Owner</span><span class="org">PUE</span></div>
+        <div class="compact-item"><span class="date">2021</span><span class="title">AZ-900 Azure Fundamentals</span><span class="org">Microsoft</span></div>
+        <div class="compact-item"><span class="date">2020</span><span class="title">Developer Program</span><span class="org">Nuclio School</span></div>
+        <div class="compact-item"><span class="date">2018 — 2021</span><span class="title">Home Automation</span><span class="org">SAP School</span></div>
+        <div class="compact-item"><span class="date">2017</span><span class="title">Ethical Hacking</span><span class="org">The Security Sentinel</span></div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Also <span class="count">side &amp; earlier</span></h2>
+      <div class="compact-list">
+        <div class="compact-item"><span class="date">2020 — now</span><span class="title">Python for finance — data gathering &amp; forecasting</span><span class="org">Side project</span></div>
+        <div class="compact-item"><span class="date">2020 — now</span><span class="title">Telegram bots for market alerts</span><span class="org">Side project</span></div>
+        <div class="compact-item"><span class="date">2017 — now</span><span class="title">Many IoT projects · LoRa, 3G, NFC, MQTT</span><span class="org">Smart mirror, RC car, tracking, sensors</span></div>
+        <div class="compact-item"><span class="date">2016 — 17</span><span class="title">Lego Robotics Teacher</span><span class="org">Nexus Robotica · Palma</span></div>
+        <div class="compact-item"><span class="date">2017</span><span class="title">Internship</span><span class="org">CEMEX · Lloseta</span></div>
+        <div class="compact-item"><span class="date">2016</span><span class="title">Internship</span><span class="org">AERTEC · Palma</span></div>
+      </div>
+    </section>
+
+    <p style="font-size: 12px; color: var(--fg-subtle); margin-top: 40px; text-align: right; font-family: var(--mono);">References available on request.</p>
+
+  </main>
+</div>
+</div>
+
+<!-- ============ SPANISH ============ -->
+<div lang-section="es">
+<div class="page">
+
+  <aside>
+    <div class="monogram">JB</div>
+
+    <div class="name-header">
+      <h1>Joaquim<br/>Bravo</h1>
+      <div class="role primary">Ingeniero IoT</div>
+      <div class="role"><span class="accent">Fundador de Civitech</span></div>
+      <div class="location">España</div>
+      <div class="status-pill">Abierto a oportunidades</div>
+    </div>
+
+    <div class="side-section">
+      <h3>Contacto</h3>
+      <ul class="contact-list">
+        <li><a href="mailto:hola@joaquimbravo.com">hola@joaquimbravo.com</a></li>
+        <li><a href="https://linkedin.com/in/joaquimbravo" target="_blank" rel="noopener">linkedin/joaquimbravo</a></li>
+        <li><a href="https://github.com/Xim1994" target="_blank" rel="noopener">github/Xim1994</a></li>
+        <li><a href="https://civitech.es" target="_blank" rel="noopener">civitech.es</a></li>
+      </ul>
+    </div>
+
+    <div class="side-section">
+      <h3>Experiencia principal</h3>
+      <div class="skills-list">
+        <div class="skill"><div class="label">Arquitectura IoT<span class="years">10a+</span></div><div class="bar" style="--level:95%"></div></div>
+        <div class="skill"><div class="label">Home Assistant / Shelly<span class="years">5a</span></div><div class="bar" style="--level:95%"></div></div>
+        <div class="skill"><div class="label">Python<span class="years">10a+</span></div><div class="bar" style="--level:90%"></div></div>
+        <div class="skill"><div class="label">MQTT · LoRaWAN<span class="years">8a</span></div><div class="bar" style="--level:92%"></div></div>
+        <div class="skill"><div class="label">AWS · Azure<span class="years">6a</span></div><div class="bar" style="--level:82%"></div></div>
+        <div class="skill"><div class="label">TypeScript · React<span class="years">6a</span></div><div class="bar" style="--level:80%"></div></div>
+        <div class="skill"><div class="label">Grafana · InfluxDB<span class="years">7a</span></div><div class="bar" style="--level:90%"></div></div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>Stack</h3>
+      <div class="chips">
+        <span class="chip">ESP32</span>
+        <span class="chip">Raspberry Pi</span>
+        <span class="chip">Modbus</span>
+        <span class="chip">CAN</span>
+        <span class="chip">OCPP</span>
+        <span class="chip">BLE</span>
+        <span class="chip">NFC</span>
+        <span class="chip">KNX</span>
+        <span class="chip">Django</span>
+        <span class="chip">Flask</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">.NET Core</span>
+        <span class="chip">GraphQL</span>
+        <span class="chip">Solidity</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Proxmox</span>
+        <span class="chip">Tailscale</span>
+        <span class="chip">n8n</span>
+        <span class="chip">Trigger.dev</span>
+        <span class="chip">Claude API</span>
+        <span class="chip">Ollama</span>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>Idiomas</h3>
+      <div class="langs">
+        <div class="lang"><span>Inglés</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div></div>
+        <div class="lang"><span>Español</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></div>
+        <div class="lang"><span>Catalán</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></div>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>Intereses</h3>
+      <ul class="contact-list">
+        <li>Economía e inversión</li>
+        <li>Home-lab y self-hosting</li>
+        <li>Deporte · Viajes · Aprender</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+
+    <section class="hero">
+      <p class="tagline">
+        Construyo sistemas conectados — desde firmware en campo hasta <em>plataformas cloud a escala</em>.
+      </p>
+      <p class="intro">
+        <strong>Ingeniero IoT</strong> con una década de experiencia en sistemas conectados industriales, automoción, salud y residenciales. Trabajo de punta a punta: desde firmware (ESP32, C++) hasta plataformas cloud (AWS, Azure, brokers MQTT, pipelines de series temporales), con foco en convertir datos de sensores en valor operativo.
+      </p>
+      <p class="intro">
+        Cofundador y CEO de <strong>Civitech</strong>, empresa española de domótica y optimización energética sobre Home Assistant, Shelly y automatizaciones propias para clientes residenciales y B2B. Actualmente también Senior IoT Architect en el sector farmacéutico / ciencias de la vida, y previamente Cloud FAE en Proemion y Front-End Team Lead en Wise (plataforma de seguridad para AXA).
+      </p>
+
+      <div class="stats">
+        <div class="stat"><div class="n">10<span class="sub">+a</span></div><div class="lbl">Experiencia IoT</div></div>
+        <div class="stat"><div class="n">5</div><div class="lbl">Sectores</div></div>
+        <div class="stat"><div class="n">1</div><div class="lbl">Empresa fundada</div></div>
+        <div class="stat"><div class="n">15<span class="sub">+</span></div><div class="lbl">Proyectos</div></div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Actualmente <span class="count">dos roles · activo</span></h2>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="tag">Fundador · CEO</div>
+          <h3>Civitech</h3>
+          <div class="sub">Domótica y optimización energética · 2021 — Actualidad</div>
+          <p>Servicio de instalación productizado para clientes residenciales y B2B sobre Home Assistant + Shelly. Responsable del stack completo: dashboards HA, monitorización, SOPs de instalación, gestión remota y estrategia de precios.</p>
+          <div class="tech"><span>Home Assistant</span><span>Shelly</span><span>Grafana</span><span>MQTT</span></div>
+        </div>
+        <div class="featured-card">
+          <div class="tag">Senior IoT Architect</div>
+          <h3>Farma / Ciencias de la vida</h3>
+          <div class="sub">Consultoría · Dic 2025 — Actualidad</div>
+          <p>Arquitectura IoT y pipelines de datos en plantas de manufactura e I+D. LoRaWAN + Tektelic NS, fleet MQTT (Mosquitto / Cedalo MMC), plataforma AWS, playbooks de onboarding y gobernanza.</p>
+          <div class="tech"><span>LoRaWAN</span><span>Tektelic</span><span>MQTT</span><span>AWS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Experiencia <span class="count">5 roles</span></h2>
+      <div class="timeline">
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Cofundador y CEO</h3>
+            <span class="badge">Actual</span>
+          </div>
+          <div class="meta">Civitech · Domótica y optimización energética</div>
+          <div class="date">2021 — Actualidad</div>
+          <ul>
+            <li>Fundé y escalé una empresa de instalaciones domóticas y optimización energética para clientes residenciales y B2B (lavanderías, oficinas, negocios energy-intensive)</li>
+            <li>Diseñé una línea de producto sobre Home Assistant + Shelly (niveles Shelly Direct y Civitech Smart) cubriendo iluminación, persianas, calefacción, aire acondicionado, seguridad y automatizaciones solar / PVPC</li>
+            <li>Desarrollé el stack técnico completo: dashboards HA, arquitectura genérica de paquetes, SOPs, monitorización (Grafana + InfluxDB + MQTT) y gestión remota de fleet</li>
+            <li>Responsable del pipeline comercial, estrategia de precios, partnerships y entrega técnica</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Senior IoT Architect</h3>
+            <span class="badge">Actual</span>
+          </div>
+          <div class="meta">Sector farmacéutico / ciencias de la vida</div>
+          <div class="date">Dic 2025 — Actualidad</div>
+          <ul>
+            <li>Arquitectura IoT y pipelines de datos en plantas de manufactura e I+D</li>
+            <li>Redes LoRaWAN con Tektelic Network Server, fleet MQTT (Mosquitto / Cedalo MMC), plataforma AWS</li>
+            <li>Integraciones de plataforma, playbooks de onboarding y gobernanza para casos de uso industriales</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Cloud Field Application Engineer</h3>
+          </div>
+          <div class="meta">Proemion · IoT industrial y telemática</div>
+          <div class="date">Jun 2023 — Actualidad</div>
+          <ul>
+            <li>Interlocutor técnico principal para soluciones IoT de vehículos y gestión de flotas, asegurando integraciones a medida para OEMs</li>
+            <li>Configuración e implementación del DataPortal de Proemion para visualización de datos y funcionalidades cloud</li>
+            <li>Soporte técnico dedicado, resolviendo retos de integración end-to-end</li>
+            <li>Stack: AWS, MQTT, Python, TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Front-End Team Lead</h3>
+          </div>
+          <div class="meta">Wise · herramienta de seguridad para AXA</div>
+          <div class="date">Nov 2019 — Ene 2024</div>
+          <ul>
+            <li>Lideré el equipo de front-end de una plataforma de pentesting construida con Python (Flask) y .NET Core</li>
+            <li>UIs responsive en React.js; backend en Node.js + TypeScript, GraphQL y smart contracts</li>
+            <li>CI/CD con Azure y GitHub Actions; app móvil complementaria en Flutter / Dart</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <h3>Ingeniero IoT</h3>
+          </div>
+          <div class="meta">Electrans · sector ferroviario</div>
+          <div class="date">Ene 2018 — Nov 2019</div>
+          <ul>
+            <li>UIs de escritorio en C# para operaciones ferroviarias</li>
+            <li>Transición a IoT: adquisición de datos en estaciones vía Raspberry Pi (celular) transmitidos al servidor central</li>
+            <li>Python y .NET para desarrollo de soluciones; plataformas web colaborativas en JavaScript</li>
+            <li>Stack Grafana + InfluxDB + Telegraf + Mosquitto para monitorización y almacenamiento</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Proyectos seleccionados <span class="count">freelance y extra</span></h2>
+      <div class="projects-grid">
+
+        <div class="project">
+          <h3>Sistema antihurto UHF</h3>
+          <div class="meta">Brownie · Barcelona · 2023–24</div>
+          <p>Raspberry Pi con sensor de presencia y lector UHF para monitorizar etiquetas de ropa. Notificaciones Teams / email y alarma luminosa en tiempo real.</p>
+        </div>
+
+        <div class="project">
+          <h3>Gateway médico BLE</h3>
+          <div class="meta">Imaginae · Barcelona · 2023–24</div>
+          <p>Gateway Raspberry Pi que conecta dispositivos médicos BLE a la plataforma Biot. Arquitectura DDD, escaneo BLE, transferencia segura.</p>
+        </div>
+
+        <div class="project">
+          <h3>Plataforma de tracking naval</h3>
+          <div class="meta">Runsolutions · Palma · 2023</div>
+          <p>Integración TTN para contadores de agua / electricidad y sensores de presencia. Decodificación MQTT, parsers TypeScript, dashboards Telegraf + InfluxDB + Grafana.</p>
+        </div>
+
+        <div class="project">
+          <h3>Integraciones sanitarias</h3>
+          <div class="meta">Blendarsys · Barcelona · 2023</div>
+          <p>Integración de dispositivos IoT vía Mirth Connect y APIs hospitalarias. Intercambio seguro entre sistemas sanitarios heterogéneos.</p>
+        </div>
+
+        <div class="project">
+          <h3>Suite firmware ESP32</h3>
+          <div class="meta">Freelance · 2022–23</div>
+          <p>ESP32 S3 en C++: integración SD, grabación I2S (WAV), provisioning WiFi (AP/BLE), actualizaciones OTA, HTTPS GET/POST, control LED RGB.</p>
+        </div>
+
+        <div class="project">
+          <h3>Sistema de alarma MQTT</h3>
+          <div class="meta">Freelance · Barcelona · 2022</div>
+          <p>Alarma Raspberry Pi conectada con zumbador, MQTT bidireccional, diseño de circuito electrónico, Python.</p>
+        </div>
+
+        <div class="project">
+          <h3>Plataforma tracking flotas</h3>
+          <div class="meta">BWireless · Barcelona · 2018–19</div>
+          <p>Tracking de vehículos en tiempo real con GPS, Python y HTML5. UI de mapa con telemetría en vivo.</p>
+        </div>
+
+        <div class="project">
+          <h3>dApps y smart contracts</h3>
+          <div class="meta">Freelance · 2020–22</div>
+          <p>Aplicaciones descentralizadas en Solidity + React.js. Extensiones VS Code en Node.js / Vue.js. Gestión de proyectos IoT con LoRaWAN.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Formación <span class="count">formal</span></h2>
+      <div class="compact-list">
+        <div class="compact-item">
+          <span class="date">2017 — 2018</span>
+          <span><span class="title">Máster en Internet of Things</span> · <span class="org">UPC Barcelona</span></span>
+          <span class="org"></span>
+        </div>
+        <div class="compact-item">
+          <span class="date">2012 — 2017</span>
+          <span><span class="title">Grado en Ingeniería Electrónica, Industrial y Automática</span> · <span class="org">UIB Palma</span></span>
+          <span class="org"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Certificaciones <span class="count">8 cursos</span></h2>
+      <div class="compact-list">
+        <div class="compact-item"><span class="date">2023 — 2024</span><span class="title">Máster en IA e Innovación</span><span class="org">Founderz &amp; Microsoft</span></div>
+        <div class="compact-item"><span class="date">2023</span><span class="title">AZ-220 Microsoft Azure IoT Developer</span><span class="org">Microsoft</span></div>
+        <div class="compact-item"><span class="date">2023</span><span class="title">AZ-204 Developing Solutions for Microsoft Azure</span><span class="org">Microsoft</span></div>
+        <div class="compact-item"><span class="date">2022</span><span class="title">Scrum Master y Product Owner</span><span class="org">PUE</span></div>
+        <div class="compact-item"><span class="date">2021</span><span class="title">AZ-900 Azure Fundamentals</span><span class="org">Microsoft</span></div>
+        <div class="compact-item"><span class="date">2020</span><span class="title">Developer Program</span><span class="org">Nuclio School</span></div>
+        <div class="compact-item"><span class="date">2018 — 2021</span><span class="title">Domótica</span><span class="org">SAP School</span></div>
+        <div class="compact-item"><span class="date">2017</span><span class="title">Ethical Hacking</span><span class="org">The Security Sentinel</span></div>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <h2>Otros <span class="count">side y anteriores</span></h2>
+      <div class="compact-list">
+        <div class="compact-item"><span class="date">2020 — hoy</span><span class="title">Python para finanzas · data y forecasting</span><span class="org">Side project</span></div>
+        <div class="compact-item"><span class="date">2020 — hoy</span><span class="title">Bots de Telegram para alertas de mercado</span><span class="org">Side project</span></div>
+        <div class="compact-item"><span class="date">2017 — hoy</span><span class="title">Proyectos IoT · LoRa, 3G, NFC, MQTT</span><span class="org">Espejo inteligente, RC, tracking, sensores</span></div>
+        <div class="compact-item"><span class="date">2016 — 17</span><span class="title">Profesor de Robótica Lego</span><span class="org">Nexus Robotica · Palma</span></div>
+        <div class="compact-item"><span class="date">2017</span><span class="title">Prácticas</span><span class="org">CEMEX · Lloseta</span></div>
+        <div class="compact-item"><span class="date">2016</span><span class="title">Prácticas</span><span class="org">AERTEC · Palma</span></div>
+      </div>
+    </section>
+
+    <p style="font-size: 12px; color: var(--fg-subtle); margin-top: 40px; text-align: right; font-family: var(--mono);">Referencias disponibles a petición.</p>
+
+  </main>
+</div>
+</div>
+
+<footer>
+  <span>© 2026 Joaquim Bravo · Built from a home-lab in Spain</span>
+  <span>v2026.04</span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[lang-section]').forEach(el => {
+      el.classList.toggle('active', el.getAttribute('lang-section') === lang);
+    });
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-es').classList.toggle('active', lang === 'es');
+    document.getElementById('pdf-link').href = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
+    localStorage.setItem('lang', lang);
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang) setLang(savedLang);
+  const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.main-section, .hero').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+</script>
+</body>
+</html>
