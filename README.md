@@ -1,6 +1,6 @@
 # joaquimbravo.com
 
-Personal CV site for Joaquim Bravo — IoT engineer and founder of Civitech.
+Personal CV site for Joaquim Bravo Jordana — IoT engineer and founder of Civitech.
 
 Live at **[joaquimbravo.com](https://joaquimbravo.com)**.
 
