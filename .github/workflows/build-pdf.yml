@@ -39,7 +39,7 @@ jobs:
             const page = await browser.newPage();
             await page.goto('http://localhost:8080/?pdf=en', { waitUntil: 'networkidle0' });
             await page.evaluate(() => setLang('en'));
-            await page.waitForTimeout(500);
+            await new Promise(r => setTimeout(r, 500));
             await page.emulateMediaType('print');
             await page.pdf({
               path: 'cv-en.pdf',
@@ -60,7 +60,7 @@ jobs:
             const page = await browser.newPage();
             await page.goto('http://localhost:8080/?pdf=es', { waitUntil: 'networkidle0' });
             await page.evaluate(() => setLang('es'));
-            await page.waitForTimeout(500);
+            await new Promise(r => setTimeout(r, 500));
             await page.emulateMediaType('print');
             await page.pdf({
               path: 'cv-es.pdf',
