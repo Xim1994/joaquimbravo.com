@@ -7,6 +7,33 @@
 
 ---
 
+## 0. Estado — aplicado el 2-nov-2026
+
+| Apartado | Estado |
+|---|---|
+| 5.1 Titular con propiedad y alcance | ✅ en los 2 idiomas, y el cargo unificado en los **5 sitios** donde salía (título de la página, og:title, twitter:title, JSON-LD y cabecera visible) |
+| 5.2 Alcance con cifras | ✅ 8+ años · 9 de equipo · 15-20 instalaciones · 5 sectores |
+| 5.3 «Decisiones que he tomado» | ✅ sección nueva, 4 decisiones situación → decisión → **consecuencia** |
+| 5.4 Proyectos 5 + 7 | ✅ 5 desarrollados + 7 en una línea; nada borrado |
+| 5.5 Competencias sin porcentajes | ✅ |
+| 5.6 Llamada a la acción | 🟡 dice «Open to CTO & Head of IoT roles» / «Abierto a CTO y Head of IoT» — **decisión de Xim**: es más concreto que «open to opportunities», pero también más explícito de cara a su empleador actual. Una palabra y se suaviza. |
+| PDF de 2 páginas | ✅ medido con pypdf en los dos idiomas |
+
+**El hallazgo técnico del día**, porque explica por qué las sesiones anteriores tenían que
+apretar la tipografía: `@media (max-width: 900px)` iba **después** del bloque de impresión y
+una hoja A4 mide ~794 px, así que en papel ganaban las reglas de móvil — 21 mm de relleno en
+`aside`, 25 mm en `main`, el nombre a 34 px y las filas de fecha apiladas sobre el texto.
+Acotado a `screen and`, el documento pasó de 582 mm a 515 mm **sin quitar contenido**, y eso
+permitió devolver el cuerpo a 8,4 pt y recuperar las certificaciones en el PDF.
+
+**Lo que sigue faltando y solo lo tiene Xim:**
+1. Una cifra por proyecto destacado (gateways, sitios, contadores, clientes).
+2. ¿**Civitech** o **Civitec**? El CV pone Civitech; el nombre real de la empresa es Civitec
+   (la marca está partida en Google). En un CV conviene que sea uno solo.
+3. Alinear LinkedIn con esto: un comité compara, y si la web dice dirección y LinkedIn dice
+   ingeniero, gana la duda.
+---
+
 ## 1. El error de posicionamiento que tiene hoy
 
 La web actual te vende como **ingeniero IoT senior que además toca cloud**. Es una escalera

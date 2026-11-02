@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Joaquim Bravo Jordana — IoT Engineer & Architect</title>
+<title>Joaquim Bravo Jordana — IoT Engineering & Platform Leadership</title>
 <meta name="description" content="IoT engineer & architect with 8+ years across industrial, automotive, healthcare and residential connected systems — cloud, MQTT & LoRaWAN fleets, full-stack." />
 <meta name="author" content="Joaquim Bravo Jordana" />
 <link rel="canonical" href="https://joaquimbravo.com/" />
@@ -18,7 +18,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://joaquimbravo.com/" />
-<meta property="og:title" content="Joaquim Bravo Jordana — IoT Engineer & Architect" />
+<meta property="og:title" content="Joaquim Bravo Jordana — IoT Engineering & Platform Leadership" />
 <meta property="og:description" content="Building connected systems — from firmware in the field to cloud platforms at scale. Eight years across industrial, automotive, healthcare and residential IoT." />
 <meta property="og:image" content="https://joaquimbravo.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -29,7 +29,7 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Joaquim Bravo Jordana — IoT Engineer & Architect" />
+<meta name="twitter:title" content="Joaquim Bravo Jordana — IoT Engineering & Platform Leadership" />
 <meta name="twitter:description" content="Building connected systems — from firmware in the field to cloud platforms at scale." />
 <meta name="twitter:image" content="https://joaquimbravo.com/og-image.png" />
 
@@ -41,7 +41,7 @@
   "name": "Joaquim Bravo Jordana",
   "url": "https://joaquimbravo.com",
   "image": "https://joaquimbravo.com/og-image.png",
-  "jobTitle": "IoT Engineer & Architect",
+  "jobTitle": "IoT Engineering & Platform Leadership",
   "email": "hola@joaquimbravo.com",
   "worksFor": [
     { "@type": "Organization", "name": "Proemion" },
@@ -772,6 +772,38 @@
   }
 
   /* PRINT */
+  /* ===== Decisiones =====
+     Un comite no lee tecnologias, lee decisiones y consecuencias. Sin tarjeta y sin color:
+     un filete neutro a la izquierda, que es jerarquia y no decoracion. */
+  .decisions {
+    display: grid;
+    gap: 15px;
+  }
+  .decision {
+    padding-left: 15px;
+    border-left: 2px solid var(--border-strong);
+  }
+  .decision h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 3px;
+    letter-spacing: -0.01em;
+  }
+  .decision p {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+  .sub-head {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-subtle);
+    margin: 22px 0 6px;
+  }
+
   /* ===== IMPRESION: el PDF es un CV de 2 paginas, no la web entera =====
      Antes salian 8 paginas porque esto solo ocultaba la barra. Lo que se oculta aqui sigue
      estando en la web: el PDF es el resumen que se manda, la web es el portafolio. */
@@ -801,7 +833,7 @@
     .langs { display: flex; gap: 16px; }
 
 
-    .reveal { opacity: 1; transform: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
 
     /* lo que no entra en dos paginas */
     .s-now { display: none; }                 /* duplica las 2 primeras de la cronologia */
@@ -809,7 +841,7 @@
     .monogram, .status-pill { display: none; }
     aside .side-section:last-child { display: none; }      /* Intereses */
     .s-projects .project:nth-child(n+6) { display: none; } /* los 5 mejores */
-    .s-certs { display: none; }
+    /* .s-certs vuelve al PDF: Azure IoT Developer y companiia son credibilidad barata */
     .s-chips-otros { display: none; }              /* ya estan en los grupos de arriba */
     .side-section .chips .chip:nth-child(n+10) { display: none; }  /* 9 por grupo */
     .hero .intro + .intro { display: none; }       /* el 2.o parrafo repite la cronologia */
@@ -877,14 +909,44 @@
     .compact-item { padding: 1px 0; }
     .main-section h2 { margin-bottom: 4px; }
     .hero { margin-bottom: 6px; }
-    body { font-size: 7.7pt; line-height: 1.30; }
-    .hero .tagline { display: none; }
+    body { font-size: 8.4pt; line-height: 1.34; }
+    .hero .tagline { display: block; font-size: 9.6pt; margin-bottom: 4px; }
     .main-section { margin-top: 6px; }
     .entry, .project, .compact-item { break-inside: avoid; page-break-inside: avoid; }
+
+    /* ===== Las decisiones entran en el PDF; las tarjetas de proyecto salen =====
+       Con la seccion nueva salian 3 paginas (medido). En impresion las tarjetas ya
+       aparecian solo como titular, sin parrafo, asi que costaban sitio sin aportar.
+       Se queda la lista de trabajos anteriores: 7 lineas con cliente, anio y
+       tecnologia, y es donde esta el firmware ESP32 / Raspberry Pi. */
+    .s-projects .projects-grid { display: none; }
+    .s-projects h2 .count { display: none; }   /* diria "5 destacados" sin ensenar ninguno */
+    .s-projects .sub-head { display: none; }   /* redundante justo debajo del h2 */
+    .decisions { gap: 5px; }
+    .decision { padding-left: 9px; border-left-width: 1.5px; }
+    .decision h3 { font-size: 8.5pt; margin-bottom: 1px; }
+    .decision p { font-size: 8pt; line-height: 1.32; }
+
+    /* Las filas compactas heredaban 13px de la hoja base (mas que el cuerpo) y la
+       rejilla de 100px + 18px de hueco las partia en dos lineas: 9,6 mm por fila,
+       79,5 mm solo los 7 trabajos anteriores. Medido, no estimado. */
+    .compact-item { font-size: 7.2pt; line-height: 1.3; padding: 0.5px 0;
+                    grid-template-columns: 80px 1fr auto; gap: 10px; }
+    .compact-item .date { white-space: nowrap; }
+    .compact-list { gap: 2px; }    /* la base pone 8px: 3,5mm x 17 filas de puro aire */
+    .compact-item { border-bottom-color: transparent; }
+    /* jerarquia: las vinetas iban a 13,5px, por encima del cuerpo y de las decisiones */
+    .entry li { font-size: 8.4pt; line-height: 1.34; }
+    .entry .sub { font-size: 8.6pt; }
   }
 
   /* RESPONSIVE */
-  @media (max-width: 900px) {
+  /* OJO: "screen and" no es decoracion. Sin eso, estas reglas se aplican tambien al
+     PDF (A4 ~794px < 900px) y, al ir despues del bloque de impresion, le ganan por
+     orden: 40px de relleno en aside, 36+60px en main, el nombre a 34px y la fecha
+     apilada sobre el texto en cada fila compacta. Medido el 2-nov-2026: eran los
+     23,6 mm que sobraban para que el PDF entrase en dos paginas. */
+  @media screen and (max-width: 900px) {
     .page { grid-template-columns: 1fr; }
     aside {
       border-right: none;
@@ -925,10 +987,10 @@
 
     <div class="name-header">
       <h1>Joaquim Bravo<br/> Jordana</h1>
-      <div class="role primary">IoT Engineer & Architect</div>
+      <div class="role primary">IoT Engineering & Platform Leadership</div>
       <div class="role"><span class="accent">Founder · Smart Home &amp; Energy</span></div>
       <div class="location">Spain</div>
-      <div class="status-pill">Open to opportunities</div>
+      <div class="status-pill">Open to CTO &amp; Head of IoT roles</div>
     </div>
 
     <div class="side-section">
@@ -1035,10 +1097,10 @@
 
     <section class="hero">
       <p class="tagline">
-        Designing <em>cloud-native IoT platforms</em> — from device networks to multi-tenant software.
+        Engineer and founder. I own <em>product, platform and delivery</em> in connected systems — from the physical install to multi-tenant SaaS.
       </p>
       <p class="intro">
-        <strong>IoT architect</strong> with eight years of experience across industrial, automotive, healthcare and residential connected systems. My focus is the cloud and platform layer: data pipelines, MQTT fleets, LoRaWAN networks, multi-site architectures and the full-stack software that sits on top of them. I also handle the networking side (Tailscale mesh, VLAN design, firewalls, edge gateways) and the electrical / energy layer on the ground — panels, wiring, solar / EV / PVPC optimization — so the stack holds together end-to-end.
+        <strong>Eight years</strong> in connected systems across industrial, automotive, healthcare and residential. I own both ends of the stack: the cloud and platform layer (data pipelines, MQTT fleets, LoRaWAN networks, multi-tenant software) and the physical one on site (panels, wiring, networks, energy optimization). Since 2025 I also run my own company, so I carry the P&amp;L, the hiring and the delivery — not just the architecture.
       </p>
       <p class="intro">
         Currently IoT Subject Matter Expert in pharma / life sciences (LoRaWAN, MQTT fleets, AWS data platform), previously Cloud FAE at Proemion and Front-End Team Lead at Wise (AXA security tooling). Alongside, co-founder of <strong>Civitech</strong>, a smart-home and energy-optimization venture built on Home Assistant, Shelly and custom automations.
@@ -1069,6 +1131,33 @@
           <p>Productized installation service for residential and B2B clients on Home Assistant + Shelly. Owns the full stack: HA dashboards, monitoring, installation SOPs, remote fleet management and pricing strategy.</p>
           <div class="tech"><span>Home Assistant</span><span>Shelly</span><span>Grafana</span><span>MQTT</span></div>
         </div>
+      </div>
+    </section>
+
+    <section class="main-section s-decisions">
+      <h2>Decisions <span class="count">scope &amp; consequence</span></h2>
+      <div class="decisions">
+
+        <div class="decision">
+          <h3>Built the monitoring platform instead of buying it</h3>
+          <p>Off-the-shelf tools gave no per-client portal with scoped access, and could not carry the energy-anomaly logic the business actually sells. Built in-house as multi-tenant software with audit logs and encrypted tokens — monitoring went from a cost to something we charge for.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Productized the installation instead of quoting bespoke</h3>
+          <p>Every quote was a one-off, so delivery depended on me being in the room. Replaced it with closed packages, a device catalogue as the single source of truth and a dashboard generator fed from it — the team now delivers installations without me.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Wrote the build / integrate / ignore rule before building anything</h3>
+          <p>The failure mode of an engineer-led company is rebuilding software that already exists, now that it is cheap to. Formalized a written gate applied before every project — build only what gains from owned data, wrap by API what the market solves, ignore commodities — so features get killed before they become debt.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Separated who produces from who verifies</h3>
+          <p>A self-reported &ldquo;done&rdquo; is not evidence. Automated work runs behind an adversarial verifier with measurable stop conditions, hard caps, spend limits and a provider fallback chain — false claims get caught by machine, and the system keeps working when the main provider runs out.</p>
+        </div>
+
       </div>
     </section>
 
@@ -1150,13 +1239,13 @@
     </section>
 
     <section class="main-section s-projects">
-      <h2>Platforms &amp; Products <span class="count">recent</span></h2>
+      <h2>Platforms &amp; Products <span class="count">5 highlighted · 7 earlier</span></h2>
       <div class="projects-grid">
 
         <div class="project">
           <h3>Fleet Monitor</h3>
           <div class="meta">B2B IoT SaaS · Django + Next.js</div>
-          <p>B2B monitoring platform for IoT installations: multi-site fleet, kWh anomaly detection, activity timeline, alert routing, public customer portals with scoped tokens, audit logs. 300+ automated tests; access tokens encrypted at rest.</p>
+          <p>B2B monitoring platform for IoT installations: multi-site fleet, kWh anomaly detection, activity timeline, alert routing, public customer portals with scoped tokens, audit logs. 1,100+ automated tests; access tokens encrypted at rest.</p>
         </div>
 
         <div class="project">
@@ -1183,48 +1272,37 @@
           <p>Fleet upgrade and monitoring tooling for LoRaWAN gateways (parallel SFTP, 10-phase upgrade pipeline, auto-recovery). MQTT and enterprise firewall integration design across regulated manufacturing sites. Delivered with internal runbooks.</p>
         </div>
 
-        <div class="project">
-          <h3>Home-lab &amp; SIEM</h3>
-          <div class="meta">Self-hosted infrastructure · Proxmox</div>
-          <p>Self-hosted virtualization platform running observability, workflow automation and local LLM inference. Security layer with SIEM, centralized logging and intrusion prevention. Zero-trust mesh networking, mTLS and hardened perimeter access.</p>
+      </div>
+      <h3 class="sub-head">Earlier work</h3>
+      <div class="compact-list">
+        <div class="compact-item">
+          <span class="date">ongoing</span>
+          <span><span class="title">Home-lab &amp; SIEM</span> · <span class="org">Proxmox · observability, local LLM, zero-trust mesh, SIEM</span></span>
         </div>
-
-        <div class="project">
-          <h3>Delta Dore cloud integration</h3>
-          <div class="meta">Home Assistant · closed-cloud integration</div>
-          <p>Protocol-level integration with a closed manufacturer cloud (OAuth2 + WebSocket), giving live bidirectional control from Home Assistant without the vendor hub. Documented for internal smart-home deployments.</p>
+        <div class="compact-item">
+          <span class="date">2026</span>
+          <span><span class="title">Delta Dore cloud integration</span> · <span class="org">Closed manufacturer cloud · OAuth2 + WebSocket into Home Assistant</span></span>
         </div>
-
-        <div class="project">
-          <h3>Boat tracking platform</h3>
-          <div class="meta">Runsolutions · Palma · 2023</div>
-          <p>TTN LoRaWAN integration for water / electric meters and presence sensors. MQTT decoding, TypeScript parsers, Telegraf + InfluxDB + Grafana dashboards.</p>
+        <div class="compact-item">
+          <span class="date">2023</span>
+          <span><span class="title">Boat tracking platform</span> · <span class="org">Runsolutions · TTN LoRaWAN, MQTT decoders, InfluxDB + Grafana</span></span>
         </div>
-
-        <div class="project">
-          <h3>BLE medical gateway</h3>
-          <div class="meta">Imaginae · Barcelona · 2023–24</div>
-          <p>Raspberry Pi gateway connecting BLE medical devices to the Biot platform. DDD architecture, BLE scanning, secure data transfer.</p>
+        <div class="compact-item">
+          <span class="date">2023 — 24</span>
+          <span><span class="title">BLE medical gateway</span> · <span class="org">Imaginae · Raspberry Pi edge gateway, BLE, DDD architecture</span></span>
         </div>
-
-        <div class="project">
-          <h3>Healthcare integrations</h3>
-          <div class="meta">Blendarsys · Barcelona · 2023</div>
-          <p>IoT device integration via Mirth Connect and hospital APIs. Secure data exchange between heterogeneous healthcare systems.</p>
+        <div class="compact-item">
+          <span class="date">2023</span>
+          <span><span class="title">Healthcare integrations</span> · <span class="org">Blendarsys · Mirth Connect, hospital APIs, secure exchange</span></span>
         </div>
-
-        <div class="project">
-          <h3>Fleet tracking platform</h3>
-          <div class="meta">BWireless · Barcelona · 2018–19</div>
-          <p>Real-time vehicle tracking platform with GPS, Python and HTML5. Customer-facing map UI with live telemetry.</p>
+        <div class="compact-item">
+          <span class="date">2018 — 19</span>
+          <span><span class="title">Fleet tracking platform</span> · <span class="org">BWireless · real-time GPS telemetry, Python, customer map UI</span></span>
         </div>
-
-        <div class="project">
-          <h3>dApps &amp; smart contracts</h3>
-          <div class="meta">Freelance · 2020–22</div>
-          <p>Solidity + React.js decentralized applications. IoT project management across LoRaWAN initiatives. Earlier firmware work on ESP32 / Raspberry Pi available on request.</p>
+        <div class="compact-item">
+          <span class="date">2020 — 22</span>
+          <span><span class="title">dApps &amp; ESP32 firmware</span> · <span class="org">Freelance · Solidity + React dApps, embedded ESP32 / Raspberry Pi</span></span>
         </div>
-
       </div>
     </section>
 
@@ -1285,10 +1363,10 @@
 
     <div class="name-header">
       <h1>Joaquim Bravo<br/> Jordana</h1>
-      <div class="role primary">Ingeniero y Arquitecto IoT</div>
+      <div class="role primary">Ingeniería IoT y dirección técnica</div>
       <div class="role"><span class="accent">Fundador · Domótica y Energía</span></div>
       <div class="location">España</div>
-      <div class="status-pill">Abierto a oportunidades</div>
+      <div class="status-pill">Abierto a CTO y Head of IoT</div>
     </div>
 
     <div class="side-section">
@@ -1395,10 +1473,10 @@
 
     <section class="hero">
       <p class="tagline">
-        Diseñando <em>plataformas IoT cloud-native</em> — de la red de dispositivos al software multi-tenant.
+        Ingeniero y fundador. Dirijo <em>producto, plataforma y entrega</em> en sistemas conectados — de la instalación física al SaaS multi-tenant.
       </p>
       <p class="intro">
-        <strong>Arquitecto IoT</strong> con ocho años de experiencia en sistemas conectados industriales, automoción, salud y residenciales. Mi foco está en la capa cloud y plataforma: pipelines de datos, flotas MQTT, redes LoRaWAN, arquitecturas multi-sitio y el software full-stack que vive encima. También cubro la capa de red (Tailscale mesh, diseño de VLANs, firewalls, gateways edge) y la parte eléctrica y energética cuando toca — instalaciones, cuadros, optimización solar / VE / PVPC. End-to-end.
+        <strong>Ocho años</strong> en sistemas conectados: industrial, automoción, salud y residencial. Me ocupo de los dos extremos: la capa cloud y de plataforma (pipelines de datos, flotas MQTT, redes LoRaWAN, software multi-tenant) y la física en obra (cuadros, cableado, red, optimización energética). Desde 2025 dirijo además mi propia empresa, así que llevo la cuenta de resultados, la contratación y la entrega — no solo la arquitectura.
       </p>
       <p class="intro">
         Actualmente IoT Subject Matter Expert en el sector farmacéutico / ciencias de la vida (LoRaWAN, flotas MQTT, plataforma AWS), y previamente Cloud FAE en Proemion y Front-End Team Lead en Wise (plataforma de seguridad para AXA). En paralelo, cofundador de <strong>Civitech</strong>, proyecto de domótica y optimización energética sobre Home Assistant, Shelly y automatizaciones propias.
@@ -1429,6 +1507,33 @@
           <p>Servicio de instalación productizado para clientes residenciales y B2B sobre Home Assistant + Shelly. Responsable del stack completo: dashboards HA, monitorización, SOPs de instalación, gestión remota y estrategia de precios.</p>
           <div class="tech"><span>Home Assistant</span><span>Shelly</span><span>Grafana</span><span>MQTT</span></div>
         </div>
+      </div>
+    </section>
+
+    <section class="main-section s-decisions">
+      <h2>Decisiones <span class="count">alcance y consecuencia</span></h2>
+      <div class="decisions">
+
+        <div class="decision">
+          <h3>Construir la plataforma de monitorización en vez de comprarla</h3>
+          <p>Lo que había en el mercado no daba a cada cliente su portal con acceso limitado, ni la lógica de anomalías de energía que es justo lo que vendemos. Se construyó dentro, multi-tenant, con auditoría y tokens cifrados — y la monitorización pasó de coste a algo que se cobra.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Productizar la instalación en vez de presupuestar a medida</h3>
+          <p>Cada presupuesto era un traje hecho a mano, así que la entrega dependía de que yo estuviera delante. Se sustituyó por paquetes cerrados, un catálogo de aparatos como fuente única y un generador de dashboards — ahora las instalaciones las entrega el equipo sin mí.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Escribir la regla construir / integrar / ignorar antes de construir nada</h3>
+          <p>La forma de fallar de una empresa de ingenieros es rehacer software que ya existe, ahora que sale barato. Se formalizó un filtro escrito previo a cada proyecto — construir solo lo que gana con datos propios, envolver por API lo que el mercado resuelve, ignorar lo commodity — y las funcionalidades se descartan antes de ser deuda.</p>
+        </div>
+
+        <div class="decision">
+          <h3>Separar a quien produce de quien verifica</h3>
+          <p>Un &laquo;hecho&raquo; dicho por quien lo hizo no es evidencia. El trabajo automatizado pasa por un verificador adversarial con parada medible, topes duros, límite de gasto y cascada de respaldo entre proveedores — las afirmaciones falsas las caza una máquina y el sistema sigue cuando se agota el proveedor principal.</p>
+        </div>
+
       </div>
     </section>
 
@@ -1510,13 +1615,13 @@
     </section>
 
     <section class="main-section s-projects">
-      <h2>Plataformas y productos <span class="count">reciente</span></h2>
+      <h2>Plataformas y productos <span class="count">5 destacados · 7 anteriores</span></h2>
       <div class="projects-grid">
 
         <div class="project">
           <h3>Fleet Monitor</h3>
           <div class="meta">SaaS IoT B2B · Django + Next.js</div>
-          <p>Plataforma B2B de monitorización para instalaciones IoT: fleet multi-sitio, detección de anomalías kWh, timeline de actividad, routing de alertas, portales públicos de cliente con tokens, audit logs. 300+ tests automatizados; tokens de acceso cifrados en reposo.</p>
+          <p>Plataforma B2B de monitorización para instalaciones IoT: fleet multi-sitio, detección de anomalías kWh, timeline de actividad, routing de alertas, portales públicos de cliente con tokens, audit logs. 1.100+ tests automatizados; tokens de acceso cifrados en reposo.</p>
         </div>
 
         <div class="project">
@@ -1543,48 +1648,37 @@
           <p>Herramientas de upgrade y monitorización para flotas de gateways LoRaWAN (SFTP paralelo, pipeline de upgrade 10-fase, auto-recovery). Diseño de integración MQTT y firewall corporativo en plantas de manufactura reguladas. Entregado con runbooks internos.</p>
         </div>
 
-        <div class="project">
-          <h3>Home-lab y SIEM</h3>
-          <div class="meta">Infraestructura self-hosted · Proxmox</div>
-          <p>Plataforma de virtualización self-hosted con observabilidad, automatización de flujos e inferencia LLM local. Capa de seguridad con SIEM, logging centralizado y prevención de intrusiones. Red mesh zero-trust, mTLS y acceso perimetral endurecido.</p>
+      </div>
+      <h3 class="sub-head">Trabajos anteriores</h3>
+      <div class="compact-list">
+        <div class="compact-item">
+          <span class="date">ongoing</span>
+          <span><span class="title">Home-lab y SIEM</span> · <span class="org">Proxmox · observabilidad, LLM local, red zero-trust, SIEM</span></span>
         </div>
-
-        <div class="project">
-          <h3>Integración cloud Delta Dore</h3>
-          <div class="meta">Home Assistant · integración de nube cerrada</div>
-          <p>Integración a nivel de protocolo con la nube cerrada de un fabricante (OAuth2 + WebSocket), con control bidireccional en vivo desde Home Assistant y sin el hub del fabricante. Documentado para despliegues domóticos internos.</p>
+        <div class="compact-item">
+          <span class="date">2026</span>
+          <span><span class="title">Integración cloud Delta Dore</span> · <span class="org">Nube cerrada de fabricante · OAuth2 + WebSocket hacia Home Assistant</span></span>
         </div>
-
-        <div class="project">
-          <h3>Plataforma tracking naval</h3>
-          <div class="meta">Runsolutions · Palma · 2023</div>
-          <p>Integración TTN LoRaWAN para contadores de agua / electricidad y sensores de presencia. Decodificación MQTT, parsers TypeScript, dashboards Telegraf + InfluxDB + Grafana.</p>
+        <div class="compact-item">
+          <span class="date">2023</span>
+          <span><span class="title">Plataforma tracking naval</span> · <span class="org">Runsolutions · TTN LoRaWAN, decodificadores MQTT, InfluxDB + Grafana</span></span>
         </div>
-
-        <div class="project">
-          <h3>Gateway médico BLE</h3>
-          <div class="meta">Imaginae · Barcelona · 2023–24</div>
-          <p>Gateway Raspberry Pi que conecta dispositivos médicos BLE a la plataforma Biot. Arquitectura DDD, escaneo BLE, transferencia segura.</p>
+        <div class="compact-item">
+          <span class="date">2023 — 24</span>
+          <span><span class="title">Gateway médico BLE</span> · <span class="org">Imaginae · gateway edge Raspberry Pi, BLE, arquitectura DDD</span></span>
         </div>
-
-        <div class="project">
-          <h3>Integraciones sanitarias</h3>
-          <div class="meta">Blendarsys · Barcelona · 2023</div>
-          <p>Integración de dispositivos IoT vía Mirth Connect y APIs hospitalarias. Intercambio seguro entre sistemas sanitarios heterogéneos.</p>
+        <div class="compact-item">
+          <span class="date">2023</span>
+          <span><span class="title">Integraciones sanitarias</span> · <span class="org">Blendarsys · Mirth Connect, APIs hospitalarias, intercambio seguro</span></span>
         </div>
-
-        <div class="project">
-          <h3>Plataforma tracking flotas</h3>
-          <div class="meta">BWireless · Barcelona · 2018–19</div>
-          <p>Tracking de vehículos en tiempo real con GPS, Python y HTML5. UI de mapa con telemetría en vivo.</p>
+        <div class="compact-item">
+          <span class="date">2018 — 19</span>
+          <span><span class="title">Plataforma tracking flotas</span> · <span class="org">BWireless · telemetría GPS en tiempo real, Python, UI de mapa</span></span>
         </div>
-
-        <div class="project">
-          <h3>dApps y smart contracts</h3>
-          <div class="meta">Freelance · 2020–22</div>
-          <p>Aplicaciones descentralizadas en Solidity + React.js. Gestión de proyectos IoT con LoRaWAN. Firmware embedded ESP32 / Raspberry Pi disponible a petición.</p>
+        <div class="compact-item">
+          <span class="date">2020 — 22</span>
+          <span><span class="title">dApps y firmware ESP32</span> · <span class="org">Freelance · dApps Solidity + React, embedded ESP32 / Raspberry Pi</span></span>
         </div>
-
       </div>
     </section>
 
