@@ -101,7 +101,7 @@ Cuatro o cinco cifras duras, sin adornos. Es lo que un comité busca en los prim
 | Personas a cargo (equipo técnico) | — | **PDTE** |
 | Personas a cargo (operaciones/obra) | — | **PDTE** |
 | Instalaciones / sitios en producción | — | **PDTE** |
-| Años dirigiendo una empresa propia | desde 2021 (**PDTE confirmar**) | |
+| Empresa propia | desde **may-2025** (confirmado por Xim, 2-nov) | ✅ |
 | Sectores regulados | farma (GxP), ferroviario, automoción, sanidad | ✅ |
 
 ### 5.3 «Decisiones que he tomado» *(sustituye a media sección de proyectos)*
