@@ -45,7 +45,7 @@ jobs:
               path: 'cv-en.pdf',
               format: 'A4',
               printBackground: true,
-              margin: { top: '10mm', right: '10mm', bottom: '10mm', left: '10mm' },
+              margin: { top: '9mm', right: '10mm', bottom: '9mm', left: '10mm' },
             });
             await browser.close();
           })();
@@ -66,7 +66,7 @@ jobs:
               path: 'cv-es.pdf',
               format: 'A4',
               printBackground: true,
-              margin: { top: '10mm', right: '10mm', bottom: '10mm', left: '10mm' },
+              margin: { top: '9mm', right: '10mm', bottom: '9mm', left: '10mm' },
             });
             await browser.close();
           })();
