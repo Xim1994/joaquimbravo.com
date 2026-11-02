@@ -772,12 +772,115 @@
   }
 
   /* PRINT */
+  /* ===== IMPRESION: el PDF es un CV de 2 paginas, no la web entera =====
+     Antes salian 8 paginas porque esto solo ocultaba la barra. Lo que se oculta aqui sigue
+     estando en la web: el PDF es el resumen que se manda, la web es el portafolio. */
   @media print {
+    @page { size: A4; margin: 9mm 10mm; }
     .topbar, footer { display: none; }
-    body { font-size: 10pt; }
+    body { font-size: 8pt; line-height: 1.34; }
     body::before { display: none; }
-    .page { display: grid; }
+    /* El diseno es para ~1120px con lateral de 300. Un A4 con margenes da ~718px,
+       asi que la columna principal se quedaba en ~418px y el texto se volvia
+       altisimo: de ahi las 4 paginas. El arreglo es la proporcion, no recortar mas. */
+    /* EN PAPEL NO HAY COLUMNA LATERAL. Con el grid de dos columnas, la barra corria a lo
+       largo de TODO el documento y dejaba la derecha medio vacia: medido, la pagina 1 tenia
+       1.056 caracteres y la 4 solo 308, cuando la 3 metia 2.022. El contenido cabe en dos
+       paginas; lo que no cabia era el reparto. Aqui el lateral es una banda de cabecera. */
+    .page { display: block; max-width: none; }
+    aside { border-right: none; border-bottom: 1px solid var(--border);
+            padding: 0 0 7px; background: none; }
+    main { padding: 9px 0 0; }
+    .name-header { margin-bottom: 6px; }
+    .contact-list { display: flex; gap: 14px; flex-wrap: wrap; }
+    .contact-list li { border: none; padding: 0; }
+    /* cada grupo de competencias en UNA linea: etiqueta a la izquierda, fichas al lado */
+    .side-section { display: flex; align-items: baseline; gap: 9px; margin-bottom: 3px; }
+    .side-section h3 { min-width: 92px; margin: 0; flex-shrink: 0; }
+    .side-section .chips { flex: 1; }
+    .langs { display: flex; gap: 16px; }
+
+
     .reveal { opacity: 1; transform: none; }
+
+    /* lo que no entra en dos paginas */
+    .s-now { display: none; }                 /* duplica las 2 primeras de la cronologia */
+    .s-also { display: none; }                /* practicas de 2016-17 y proyectos personales */
+    .monogram, .status-pill { display: none; }
+    aside .side-section:last-child { display: none; }      /* Intereses */
+    .s-projects .project:nth-child(n+6) { display: none; } /* los 5 mejores */
+    .s-certs { display: none; }
+    .s-chips-otros { display: none; }              /* ya estan en los grupos de arriba */
+    .side-section .chips .chip:nth-child(n+10) { display: none; }  /* 9 por grupo */
+    .hero .intro + .intro { display: none; }       /* el 2.o parrafo repite la cronologia */
+
+    /* apretar sin que se vuelva ilegible */
+    aside { padding: 0 14px 0 0; border-right: 1px solid var(--border); }
+    main { padding: 0 0 0 16px; }
+    .main-section { margin-top: 11px; }
+    .main-section h2 { font-size: 10.5pt; margin-bottom: 6px; }
+    .side-section { margin-bottom: 9px; }
+    .side-section h3 { font-size: 7.6pt; }
+    .name-header h1 { font-size: 19pt; }
+    .hero { margin-bottom: 8px; }
+    .hero .tagline { font-size: 12pt; margin-bottom: 5px; }
+    .hero .intro { font-size: 8.4pt; margin-bottom: 4px; }
+    .stats { margin-top: 7px; }
+    .entry { margin-bottom: 7px; }
+    .entry h3 { font-size: 9.4pt; }
+    .entry ul { margin: 2px 0 0; }
+    .entry li { margin-bottom: 1px; }
+    .projects-grid { gap: 7px; }
+    .project { padding: 8px; }
+    .project h3 { font-size: 8.8pt; }
+    .compact-item { padding: 3px 0; }
+    .chip { padding: 1px 5px; font-size: 7.2pt; }
+
+    /* que no se parta una entrada por la mitad entre dos paginas */
+    /* La cabecera se comia el 44% de la primera pagina (medido en captura). Aqui se
+       aprieta: el nombre en UNA linea, las filas de competencias sin aire y las cifras
+       en cajas bajas. Es lo unico que faltaba para que el CV entre en dos paginas. */
+    .name-header h1 { font-size: 15pt; line-height: 1.05; margin-bottom: 2px; }
+    .name-header h1 br { display: none; }
+    .name-header .role { font-size: 8.4pt; line-height: 1.25; }
+    .name-header .location { font-size: 7.4pt; margin-top: 1px; }
+    .side-section { margin-bottom: 1px; }
+    .side-section h3 { border: none; padding: 0; margin: 0; min-width: 112px; white-space: nowrap; }
+    .side-section h3::after { display: none; }
+    .chip { padding: 0 4px; font-size: 6.9pt; }
+    .contact-list { font-size: 7.6pt; }
+    .hero .tagline { font-size: 10.5pt; margin-bottom: 4px; }
+    .stats { margin-top: 6px; gap: 7px; }
+    .stat { padding: 5px 7px; }
+    .stat .n { font-size: 13pt; }
+    .stat .lbl { font-size: 6.6pt; }
+    .main-section { margin-top: 8px; }
+    .project { padding: 6px 7px; }
+    .project .meta { font-size: 6.9pt; }
+    .entry { margin-bottom: 5px; }
+
+    /* Ultimo recorte para que entre en 2 paginas, y es el estandar de un CV: tres
+       vinetas por puesto y tres proyectos. Lo demas sigue en la web, que es el
+       portafolio ampliado; el PDF es el resumen que se manda. */
+    .side-section { margin-top: 2px; margin-bottom: 0; }
+    .side-section .chips { margin: 0; row-gap: 2px; column-gap: 4px; }
+    .side-section h3 { line-height: 1.25; }
+    .contact-list { margin: 0; }
+    .langs { margin: 0; }
+    .lang > span { margin-right: 5px; }
+    .entry ul li:nth-child(n+4) { display: none; }
+    /* En el PDF los proyectos van como titular, sin el parrafo: el desarrollo esta en la
+       web, que es el portafolio. Asi la experiencia completa y la formacion caben en dos. */
+    .s-projects .project:nth-child(n+3) { display: none; }
+    .s-projects .project p { display: none; }
+    .s-refs { display: none; }                /* relleno: ocupa linea y no dice nada */
+    .compact-item { padding: 1px 0; }
+    .main-section h2 { margin-bottom: 4px; }
+    .hero { margin-bottom: 6px; }
+    body { font-size: 7.7pt; line-height: 1.30; }
+    .hero .tagline { display: none; }
+    .main-section { margin-top: 6px; }
+    .entry, .project, .compact-item { break-inside: avoid; page-break-inside: avoid; }
   }
 
   /* RESPONSIVE */
@@ -821,7 +924,7 @@
     <div class="monogram">JB</div>
 
     <div class="name-header">
-      <h1>Joaquim Bravo<br/>Jordana</h1>
+      <h1>Joaquim Bravo<br/> Jordana</h1>
       <div class="role primary">IoT Engineer & Architect</div>
       <div class="role"><span class="accent">Founder · Smart Home &amp; Energy</span></div>
       <div class="location">Spain</div>
@@ -838,17 +941,17 @@
     </div>
 
     <div class="side-section">
-      <h3>Core Expertise</h3>
-      <div class="skills-list">
-        <div class="skill"><div class="label">IoT architecture</div><div class="bar" style="--level:95%"></div></div>
-        <div class="skill"><div class="label">Cloud platforms (AWS · Azure)</div><div class="bar" style="--level:88%"></div></div>
-        <div class="skill"><div class="label">MQTT · LoRaWAN fleets</div><div class="bar" style="--level:92%"></div></div>
-        <div class="skill"><div class="label">Networks &amp; security</div><div class="bar" style="--level:85%"></div></div>
-        <div class="skill"><div class="label">Python · Django</div><div class="bar" style="--level:90%"></div></div>
-        <div class="skill"><div class="label">TypeScript · React · Next.js</div><div class="bar" style="--level:82%"></div></div>
-        <div class="skill"><div class="label">Home Assistant · Shelly</div><div class="bar" style="--level:95%"></div></div>
-        <div class="skill"><div class="label">Grafana · InfluxDB</div><div class="bar" style="--level:90%"></div></div>
-        <div class="skill"><div class="label">AI agents · LLM orchestration</div><div class="bar" style="--level:85%"></div></div>
+      <h3>Core</h3>
+      <div class="chips">
+        <span class="chip">IoT architecture</span>
+        <span class="chip">Cloud platforms</span>
+        <span class="chip">MQTT</span>
+        <span class="chip">LoRaWAN</span>
+        <span class="chip">Python &middot; Django</span>
+        <span class="chip">TypeScript &middot; React</span>
+        <span class="chip">Home Assistant</span>
+        <span class="chip">Grafana &middot; InfluxDB</span>
+        <span class="chip">AI agents &middot; LLM</span>
       </div>
     </div>
 
@@ -897,7 +1000,7 @@
       </div>
     </div>
 
-    <div class="side-section">
+    <div class="side-section s-chips-otros">
       <h3>Also</h3>
       <div class="chips">
         <span class="chip">Raspberry Pi</span>
@@ -909,7 +1012,7 @@
       </div>
     </div>
 
-    <div class="side-section">
+    <div class="side-section s-langs">
       <h3>Languages</h3>
       <div class="langs">
         <div class="lang"><span>English</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div></div>
@@ -938,22 +1041,22 @@
         <strong>IoT architect</strong> with eight years of experience across industrial, automotive, healthcare and residential connected systems. My focus is the cloud and platform layer: data pipelines, MQTT fleets, LoRaWAN networks, multi-site architectures and the full-stack software that sits on top of them. I also handle the networking side (Tailscale mesh, VLAN design, firewalls, edge gateways) and the electrical / energy layer on the ground — panels, wiring, solar / EV / PVPC optimization — so the stack holds together end-to-end.
       </p>
       <p class="intro">
-        Currently Senior IoT Architect in pharma / life sciences (LoRaWAN, MQTT fleets, AWS data platform), previously Cloud FAE at Proemion and Front-End Team Lead at Wise (AXA security tooling). Alongside, co-founder of <strong>Civitech</strong>, a smart-home and energy-optimization venture built on Home Assistant, Shelly and custom automations.
+        Currently IoT Subject Matter Expert in pharma / life sciences (LoRaWAN, MQTT fleets, AWS data platform), previously Cloud FAE at Proemion and Front-End Team Lead at Wise (AXA security tooling). Alongside, co-founder of <strong>Civitech</strong>, a smart-home and energy-optimization venture built on Home Assistant, Shelly and custom automations.
       </p>
 
       <div class="stats">
         <div class="stat"><div class="n">8<span class="sub">+y</span></div><div class="lbl">IoT experience</div></div>
+        <div class="stat"><div class="n">9</div><div class="lbl">Team led, peak</div></div>
+        <div class="stat"><div class="n">15<span class="sub">-20</span></div><div class="lbl">Installations live</div></div>
         <div class="stat"><div class="n">5</div><div class="lbl">Industries</div></div>
-        <div class="stat"><div class="n">1</div><div class="lbl">Company founded</div></div>
-        <div class="stat"><div class="n">15<span class="sub">+</span></div><div class="lbl">Projects shipped</div></div>
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-now">
       <h2>Currently <span class="count">two roles · active</span></h2>
       <div class="featured-grid">
         <div class="featured-card">
-          <div class="tag">Senior IoT Architect</div>
+          <div class="tag">IoT Subject Matter Expert</div>
           <h3>Pharma / Life Sciences</h3>
           <div class="sub">Consulting · Dec 2025 — Present</div>
           <p>IoT architecture and data pipelines across manufacturing and R&amp;D sites. LoRaWAN + Tektelic NS, MQTT fleet (Mosquitto / Cedalo MMC), AWS data platform, onboarding playbooks and governance.</p>
@@ -969,13 +1072,13 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-exp">
       <h2>Experience <span class="count">5 roles</span></h2>
       <div class="timeline">
 
         <div class="entry">
           <div class="entry-head">
-            <h3>Senior IoT Architect</h3>
+            <h3>IoT Subject Matter Expert</h3>
             <span class="badge">Current</span>
           </div>
           <div class="meta">Pharma / Life Sciences sector</div>
@@ -1012,7 +1115,7 @@
             <li>Founded and scaled a smart-home installation and energy-optimization company serving residential and B2B clients (laundries, offices, energy-intensive businesses)</li>
             <li>Designed a productized service line on Home Assistant + Shelly (Shelly Direct and Civitech Smart tiers) covering lighting, blinds, heating, AC, security and solar / PVPC-based automations</li>
             <li>Built the full technical stack: HA dashboards, generic package architecture, installation SOPs, monitoring (Grafana + InfluxDB + MQTT) and remote fleet management</li>
-            <li>Ownership of sales pipeline, pricing strategy, partnerships and technical delivery</li>
+            <li>Ownership of P&amp;L, hiring and team management (up to 9 employees plus 3&ndash;4 external collaborators), pricing strategy, partnerships and technical delivery</li>
           </ul>
         </div>
 
@@ -1023,7 +1126,7 @@
           <div class="meta">Wise · AXA security tooling</div>
           <div class="date">Nov 2019 — Jan 2024</div>
           <ul>
-            <li>Led the front-end team for a penetration-testing security platform built with Python (Flask) and .NET Core</li>
+            <li>Led a 4-person front-end team on a penetration-testing security platform built with Python (Flask) and .NET Core</li>
             <li>Responsive UIs in React.js; backend in Node.js + TypeScript, GraphQL and blockchain smart contracts</li>
             <li>CI/CD with Azure and GitHub Actions; mobile companion app in Flutter / Dart</li>
           </ul>
@@ -1046,7 +1149,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-projects">
       <h2>Platforms &amp; Products <span class="count">recent</span></h2>
       <div class="projects-grid">
 
@@ -1125,7 +1228,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-edu">
       <h2>Education <span class="count">formal</span></h2>
       <div class="compact-list">
         <div class="compact-item">
@@ -1141,7 +1244,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-certs">
       <h2>Certifications <span class="count">8 courses</span></h2>
       <div class="compact-list">
         <div class="compact-item"><span class="date">2023 — 2024</span><span class="title">Master in AI and Innovation</span><span class="org">Founderz &amp; Microsoft</span></div>
@@ -1155,7 +1258,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-also">
       <h2>Also <span class="count">side &amp; earlier</span></h2>
       <div class="compact-list">
         <div class="compact-item"><span class="date">2020 — now</span><span class="title">Python for finance — data gathering &amp; forecasting</span><span class="org">Side project</span></div>
@@ -1167,7 +1270,7 @@
       </div>
     </section>
 
-    <p style="font-size: 12px; color: var(--fg-subtle); margin-top: 40px; text-align: right; font-family: var(--mono);">References available on request.</p>
+    <p class="s-refs" style="font-size: 12px; color: var(--fg-subtle); margin-top: 40px; text-align: right; font-family: var(--mono);">References available on request.</p>
 
   </main>
 </div>
@@ -1181,7 +1284,7 @@
     <div class="monogram">JB</div>
 
     <div class="name-header">
-      <h1>Joaquim Bravo<br/>Jordana</h1>
+      <h1>Joaquim Bravo<br/> Jordana</h1>
       <div class="role primary">Ingeniero y Arquitecto IoT</div>
       <div class="role"><span class="accent">Fundador · Domótica y Energía</span></div>
       <div class="location">España</div>
@@ -1198,17 +1301,17 @@
     </div>
 
     <div class="side-section">
-      <h3>Experiencia principal</h3>
-      <div class="skills-list">
-        <div class="skill"><div class="label">Arquitectura IoT</div><div class="bar" style="--level:95%"></div></div>
-        <div class="skill"><div class="label">Cloud (AWS · Azure)</div><div class="bar" style="--level:88%"></div></div>
-        <div class="skill"><div class="label">MQTT · LoRaWAN fleets</div><div class="bar" style="--level:92%"></div></div>
-        <div class="skill"><div class="label">Redes y seguridad</div><div class="bar" style="--level:85%"></div></div>
-        <div class="skill"><div class="label">Python · Django</div><div class="bar" style="--level:90%"></div></div>
-        <div class="skill"><div class="label">TypeScript · React · Next.js</div><div class="bar" style="--level:82%"></div></div>
-        <div class="skill"><div class="label">Home Assistant · Shelly</div><div class="bar" style="--level:95%"></div></div>
-        <div class="skill"><div class="label">Instalación eléctrica &amp; energía</div><div class="bar" style="--level:80%"></div></div>
-        <div class="skill"><div class="label">Agentes IA · LLM</div><div class="bar" style="--level:85%"></div></div>
+      <h3>Principal</h3>
+      <div class="chips">
+        <span class="chip">Arquitectura IoT</span>
+        <span class="chip">Plataformas cloud</span>
+        <span class="chip">MQTT</span>
+        <span class="chip">LoRaWAN</span>
+        <span class="chip">Python &middot; Django</span>
+        <span class="chip">TypeScript &middot; React</span>
+        <span class="chip">Home Assistant</span>
+        <span class="chip">Instalación eléctrica</span>
+        <span class="chip">Agentes IA &middot; LLM</span>
       </div>
     </div>
 
@@ -1257,7 +1360,7 @@
       </div>
     </div>
 
-    <div class="side-section">
+    <div class="side-section s-chips-otros">
       <h3>También</h3>
       <div class="chips">
         <span class="chip">Raspberry Pi</span>
@@ -1269,7 +1372,7 @@
       </div>
     </div>
 
-    <div class="side-section">
+    <div class="side-section s-langs">
       <h3>Idiomas</h3>
       <div class="langs">
         <div class="lang"><span>Inglés</span><div class="dots"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div></div>
@@ -1298,22 +1401,22 @@
         <strong>Arquitecto IoT</strong> con ocho años de experiencia en sistemas conectados industriales, automoción, salud y residenciales. Mi foco está en la capa cloud y plataforma: pipelines de datos, flotas MQTT, redes LoRaWAN, arquitecturas multi-sitio y el software full-stack que vive encima. También cubro la capa de red (Tailscale mesh, diseño de VLANs, firewalls, gateways edge) y la parte eléctrica y energética cuando toca — instalaciones, cuadros, optimización solar / VE / PVPC. End-to-end.
       </p>
       <p class="intro">
-        Actualmente Senior IoT Architect en el sector farmacéutico / ciencias de la vida (LoRaWAN, flotas MQTT, plataforma AWS), y previamente Cloud FAE en Proemion y Front-End Team Lead en Wise (plataforma de seguridad para AXA). En paralelo, cofundador de <strong>Civitech</strong>, proyecto de domótica y optimización energética sobre Home Assistant, Shelly y automatizaciones propias.
+        Actualmente IoT Subject Matter Expert en el sector farmacéutico / ciencias de la vida (LoRaWAN, flotas MQTT, plataforma AWS), y previamente Cloud FAE en Proemion y Front-End Team Lead en Wise (plataforma de seguridad para AXA). En paralelo, cofundador de <strong>Civitech</strong>, proyecto de domótica y optimización energética sobre Home Assistant, Shelly y automatizaciones propias.
       </p>
 
       <div class="stats">
         <div class="stat"><div class="n">8<span class="sub">+a</span></div><div class="lbl">Experiencia IoT</div></div>
+        <div class="stat"><div class="n">9</div><div class="lbl">Equipo dirigido, máx.</div></div>
+        <div class="stat"><div class="n">15<span class="sub">-20</span></div><div class="lbl">Instalaciones activas</div></div>
         <div class="stat"><div class="n">5</div><div class="lbl">Sectores</div></div>
-        <div class="stat"><div class="n">1</div><div class="lbl">Empresa fundada</div></div>
-        <div class="stat"><div class="n">15<span class="sub">+</span></div><div class="lbl">Proyectos</div></div>
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-now">
       <h2>Actualmente <span class="count">dos roles · activo</span></h2>
       <div class="featured-grid">
         <div class="featured-card">
-          <div class="tag">Senior IoT Architect</div>
+          <div class="tag">IoT Subject Matter Expert</div>
           <h3>Farma / Ciencias de la vida</h3>
           <div class="sub">Consultoría · Dic 2025 — Actualidad</div>
           <p>Arquitectura IoT y pipelines de datos en plantas de manufactura e I+D. LoRaWAN + Tektelic NS, fleet MQTT (Mosquitto / Cedalo MMC), plataforma AWS, playbooks de onboarding y gobernanza.</p>
@@ -1329,13 +1432,13 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-exp">
       <h2>Experiencia <span class="count">5 roles</span></h2>
       <div class="timeline">
 
         <div class="entry">
           <div class="entry-head">
-            <h3>Senior IoT Architect</h3>
+            <h3>IoT Subject Matter Expert</h3>
             <span class="badge">Actual</span>
           </div>
           <div class="meta">Sector farmacéutico / ciencias de la vida</div>
@@ -1372,7 +1475,7 @@
             <li>Fundé y escalé una empresa de instalaciones domóticas y optimización energética para clientes residenciales y B2B (lavanderías, oficinas, negocios energy-intensive)</li>
             <li>Diseñé una línea de producto sobre Home Assistant + Shelly (niveles Shelly Direct y Civitech Smart) cubriendo iluminación, persianas, calefacción, aire acondicionado, seguridad y automatizaciones solar / PVPC</li>
             <li>Desarrollé el stack técnico completo: dashboards HA, arquitectura genérica de paquetes, SOPs, monitorización (Grafana + InfluxDB + MQTT) y gestión remota de fleet</li>
-            <li>Responsable del pipeline comercial, estrategia de precios, partnerships y entrega técnica</li>
+            <li>Responsable de la cuenta de resultados, contratación y gestión de equipo (hasta 9 empleados más 3&ndash;4 colaboradores externos), estrategia de precios, partnerships y entrega técnica</li>
           </ul>
         </div>
 
@@ -1383,7 +1486,7 @@
           <div class="meta">Wise · herramienta de seguridad para AXA</div>
           <div class="date">Nov 2019 — Ene 2024</div>
           <ul>
-            <li>Lideré el equipo de front-end de una plataforma de pentesting construida con Python (Flask) y .NET Core</li>
+            <li>Lideré un equipo de 4 personas en el front-end de una plataforma de pentesting construida con Python (Flask) y .NET Core</li>
             <li>UIs responsive en React.js; backend en Node.js + TypeScript, GraphQL y smart contracts</li>
             <li>CI/CD con Azure y GitHub Actions; app móvil complementaria en Flutter / Dart</li>
           </ul>
@@ -1406,7 +1509,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-projects">
       <h2>Plataformas y productos <span class="count">reciente</span></h2>
       <div class="projects-grid">
 
@@ -1485,7 +1588,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-edu">
       <h2>Formación <span class="count">formal</span></h2>
       <div class="compact-list">
         <div class="compact-item">
@@ -1501,7 +1604,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-certs">
       <h2>Certificaciones <span class="count">8 cursos</span></h2>
       <div class="compact-list">
         <div class="compact-item"><span class="date">2023 — 2024</span><span class="title">Máster en IA e Innovación</span><span class="org">Founderz &amp; Microsoft</span></div>
@@ -1515,7 +1618,7 @@
       </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section s-also">
       <h2>Otros <span class="count">side y anteriores</span></h2>
       <div class="compact-list">
         <div class="compact-item"><span class="date">2020 — hoy</span><span class="title">Python para finanzas · data y forecasting</span><span class="org">Side project</span></div>
@@ -1527,7 +1630,7 @@
       </div>
     </section>
 
-    <p style="font-size: 12px; color: var(--fg-subtle); margin-top: 40px; text-align: right; font-family: var(--mono);">Referencias disponibles a petición.</p>
+    <p class="s-refs" style="font-size: 12px; color: var(--fg-subtle); margin-top: 40px; text-align: right; font-family: var(--mono);">Referencias disponibles a petición.</p>
 
   </main>
 </div>
@@ -1555,8 +1658,12 @@
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   }
+  //: ?pdf=es|en manda sobre lo guardado: asi el PDF se puede generar (y comprobar)
+  //: con una sola URL, sin depender de que quien renderiza ejecute setLang a mano.
+  const _pdfLang = new URLSearchParams(location.search).get('pdf');
   const savedLang = localStorage.getItem('lang');
-  if (savedLang) setLang(savedLang);
+  if (_pdfLang === 'es' || _pdfLang === 'en') setLang(_pdfLang);
+  else if (savedLang) setLang(savedLang);
   const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   document.documentElement.setAttribute('data-theme', savedTheme);
 

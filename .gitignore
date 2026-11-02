@@ -2,3 +2,4 @@ _build/
 .DS_Store
 *.log
 node_modules/
+index.html.bak-*
